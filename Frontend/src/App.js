@@ -1,7 +1,7 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CentersPage from "./pages/CentersPage";
-import SchedulePage from "./pages/SchedulePage"; // You'll create this next
+import CentersPage from "./components/CentersPage";
+import SchedulePage from "./components/SchedulePage";
 
 function App() {
   return (
