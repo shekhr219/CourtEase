@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import AddBookingForm from "./AddBookingForm";
 import AddBookingModal from "./AddBookingModal";
 
 const SchedulePage = () => {
   const { centerId } = useParams();
-  const navigate = useNavigate();
   const [schedule, setSchedule] = useState([]);
   const [courts, setCourts] = useState([]);
   const [selectedSport, setSelectedSport] = useState(null);
