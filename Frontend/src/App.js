@@ -1,4 +1,3 @@
-// src/App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CentersPage from "./components/CentersPage";
 import SchedulePage from "./components/SchedulePage";

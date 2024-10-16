@@ -42,7 +42,7 @@ const SchedulePage = () => {
     const fetchSports = async () => {
       try {
         const sportsRes = await axios.get(
-          `http://localhost:5000/api/sports/${centerId}`
+          `https://courtease-backend.onrender.com/api/sports/${centerId}`
         );
         setSports(sportsRes.data);
 
@@ -58,7 +58,7 @@ const SchedulePage = () => {
     const fetchCenter = async () => {
       try {
         const centerRes = await axios.get(
-          `http://localhost:5000/api/centers/${centerId}`
+          `https://courtease-backend.onrender.com/api/centers/${centerId}`
         );
         setCenterName(centerRes.data.name);
       } catch (err) {
@@ -80,12 +80,12 @@ const SchedulePage = () => {
     if (selectedSport) {
       try {
         const courtsRes = await axios.get(
-          `http://localhost:5000/api/courts/${selectedSport}`
+          `https://courtease-backend.onrender.com/api/courts/${selectedSport}`
         );
         setCourts(courtsRes.data);
 
         const scheduleRes = await axios.get(
-          `http://localhost:5000/api/bookings/sport/${selectedSport}/${selectedDate}`
+          `https://courtease-backend.onrender.com/api/bookings/sport/${selectedSport}/${selectedDate}`
         );
         setSchedule(scheduleRes.data);
       } catch (err) {
@@ -149,9 +149,12 @@ const SchedulePage = () => {
     const courtName = prompt("Enter the name of the new court:");
     if (courtName) {
       try {
-        await axios.post(`http://localhost:5000/api/courts/${selectedSport}`, {
-          name: courtName,
-        });
+        await axios.post(
+          `https://courtease-backend.onrender.com/api/courts/${selectedSport}`,
+          {
+            name: courtName,
+          }
+        );
         alert("Court added successfully!");
         fetchSchedule(); // Refresh courts after adding a new one
       } catch (err) {
@@ -165,12 +168,15 @@ const SchedulePage = () => {
     const sportName = prompt("Enter the name of the new sport:");
     if (sportName) {
       try {
-        await axios.post(`http://localhost:5000/api/sports/${centerId}`, {
-          name: sportName,
-        });
+        await axios.post(
+          `https://courtease-backend.onrender.com/api/sports/${centerId}`,
+          {
+            name: sportName,
+          }
+        );
         alert("Sport added successfully!");
         const sportsRes = await axios.get(
-          `http://localhost:5000/api/sports/${centerId}`
+          `https://courtease-backend.onrender.com/api/sports/${centerId}`
         );
         setSports(sportsRes.data);
       } catch (err) {

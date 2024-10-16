@@ -14,7 +14,7 @@ const AddBookingForm = ({ centerId, selectedSport, fetchSchedule }) => {
     const fetchCourts = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/courts/${selectedSport}`
+          `https://courtease-backend.onrender.com/api/courts/${selectedSport}`
         );
         setCourts(res.data);
       } catch (err) {
@@ -29,7 +29,7 @@ const AddBookingForm = ({ centerId, selectedSport, fetchSchedule }) => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/bookings", {
+      await axios.post("https://courtease-backend.onrender.com/api/bookings", {
         customerName,
         court: courtId,
         date,

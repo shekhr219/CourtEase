@@ -8,7 +8,7 @@ const AddCenterForm = ({ onClose, refreshCenters }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/centers", {
+      await axios.post("https://courtease-backend.onrender.com/api/centers", {
         name: centerName,
         location,
       });

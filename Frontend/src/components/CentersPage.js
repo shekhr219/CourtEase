@@ -11,7 +11,9 @@ const CentersPage = () => {
 
   const fetchCenters = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/centers");
+      const response = await axios.get(
+        "https://courtease-backend.onrender.com/api/centers"
+      );
       setCenters(response.data);
     } catch (err) {
       console.error("Error fetching centers:", err);
