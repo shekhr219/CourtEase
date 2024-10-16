@@ -112,6 +112,25 @@ const SchedulePage = () => {
       );
     });
   };
+  const getBookingName = (courtId, timeSlot) => {
+    const booking = schedule.find((booking) => {
+      const bookingDate = new Date(booking.date).toISOString().split("T")[0];
+      const bookingHour = parseInt(booking.startTime.split(":")[0]);
+      const bookingPeriod = bookingHour < 12 ? "AM" : "PM";
+      const formattedBookingTime = `${bookingHour % 12 || 12} ${bookingPeriod}`;
+      const bookingCourtId =
+        typeof booking.court === "object"
+          ? booking.court._id.toString()
+          : booking.court;
+
+      return (
+        bookingCourtId === courtId &&
+        bookingDate === selectedDate &&
+        formattedBookingTime === timeSlot
+      );
+    });
+    return booking ? booking.customerName : null; // Assuming `customerName` is the field in your booking object
+  };
 
   const handleSportClick = (sportId) => {
     setSelectedSport(sportId);
@@ -240,6 +259,8 @@ const SchedulePage = () => {
                 <td className="px-4 py-2 border">{slot}</td>
                 {courts.map((court) => {
                   const isBooked = checkIfBooked(court._id, slot);
+                  const bookingName = getBookingName(court._id, slot); // Get the customer's name
+
                   return (
                     <td key={court._id} className="px-4 py-2 border">
                       <div
@@ -247,7 +268,14 @@ const SchedulePage = () => {
                           isBooked ? "bg-red-300" : "bg-green-200"
                         }`}
                       >
-                        {isBooked ? "Booked" : "Available"}
+                        {isBooked ? (
+                          <>
+                            <span>Booked</span>
+                            <div className="text-sm">{bookingName}</div>
+                          </>
+                        ) : (
+                          "Available"
+                        )}
                       </div>
                     </td>
                   );
